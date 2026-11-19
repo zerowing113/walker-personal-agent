@@ -4,11 +4,11 @@
 
 **A personal AI agent that watches your money and your travel deals, tells you what matters, and leaves every decision to you.**
 
-![Stage](https://img.shields.io/badge/stage-v1%20build-28634e)
+![Stage](https://img.shields.io/badge/stage-concept%20review-28634e)
 ![Works with](https://img.shields.io/badge/works%20with-ChatGPT%20Dots%20%C2%B7%20Meta%20Muse%20%C2%B7%20Claude-14372d)
 ![Moves money](https://img.shields.io/badge/moves%20money-never-b23b3b)
 
-[The problem](#1-the-problem) · [The solution](#2-the-solution) · [How it works](#3-how-an-agent-works) · [Build it](#4-build-it) · [Plan](#5-build-plan)
+[The problem](#1-the-problem) · [The solution](#2-the-solution) · [How it works](#3-how-an-agent-works) · [The three setup files](#4-the-three-setup-files)
 
 </div>
 
@@ -28,7 +28,7 @@ Walker's money questions are simple, but answering them means checking four plac
 
 ## 2. The solution
 
-One agent, set up by Walker himself from three instruction files, that:
+One agent, defined by three plain-text setup files that work with any major agent platform. It:
 
 - ✅ **pings him** when daily spending crosses his limit, an offer is about to expire, or a watched flight gets cheaper
 - ✅ **builds a monthly personal cash flow statement** covering money in, money out, net, and spending peaks
@@ -74,26 +74,17 @@ flowchart LR
 
 **Why a separate inbox?** The agent only sees what you route to it. Your main email, bank logins, and brokerage account stay out of reach. That keeps the privacy risk small and avoids flooding your main inbox.
 
-## 4. Build it
+## 4. The three setup files
 
-Do these in order, about 20 minutes each. Each file explains *why*, walks you through setup, gives you instructions to paste, and ends with tests.
+The whole agent is these three files. Each one explains *why* before *how*, so reading them is the fastest way to see how the back end actually works.
 
-| | File | You'll end with |
-|---|---|---|
-| ① | [**Agent foundation**](setup/1-agent-foundation.md) | The agent account, the memory sheet, the alerts routed, and the hard rules in place |
-| ② | [**Money in and out**](setup/2-money-in-and-out.md) | Daily spending alerts, the monthly cash flow statement, and the ETF transfer reminder |
-| ③ | [**Points and travel**](setup/3-points-and-travel.md) | Card offer and bonus alerts, plus flight comparisons by cash vs. points |
+| | File | Teaches | The agent can then… |
+|---|---|---|---|
+| ① | [**Agent foundation**](setup/1-agent-foundation.md) | Front end vs. back end, the separate inbox, memory, hard rules | Read its own inbox and sheet, and refuse anything outside its rules |
+| ② | [**Money in and out**](setup/2-money-in-and-out.md) | Turning raw alerts and statements into answers, scheduled checks | Report daily spending, build the monthly cash flow statement, calculate the ETF split |
+| ③ | [**Points and travel**](setup/3-points-and-travel.md) | Combining your data with public web data, alert thresholds | Flag offers and bonus deadlines, and compare flights by cash vs. points |
 
-## 5. Build plan
-
-| When | What | Outcome |
-|---|---|---|
-| **Meeting 1** (30 min) | Build ① together: account, sheet, alerts, rules | The agent answers "what did I spend today?" |
-| **Before meeting 2** | Walker runs it for a week and notes what's annoying | A list of real pain points |
-| **Meeting 2** (30 min) | Build ② and ③, then tune thresholds from week one | Statement, ETF reminder, offers, flights all live |
-| **About 1 month later** (virtual, from Australia) | Review pings, the first monthly statement, and real flight searches | Decide what to fix, and whether to add health or other areas |
-
-**Later, not now:** health tracking (on hold for privacy), direct bank links (optional, read-only), and automated payments (only if banks allow agent payments safely).
+**Not in v1:** health tracking (on hold for privacy), direct bank links (optional, read-only), and automated payments (only if banks allow agent payments safely).
 
 ---
 
