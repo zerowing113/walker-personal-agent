@@ -1,0 +1,14 @@
+key,value
+time_zone,
+currency,USD
+card.<alias>.alert_sender,
+card.<alias>.silence_days,3
+daily_threshold,
+large_purchase_amount,
+quiet_hours,22:00-07:00
+pings_enabled,no
+bank_link_available,
+travel_reserve,
+loyalty_programs,
+preview_modules,
+last_check_at,

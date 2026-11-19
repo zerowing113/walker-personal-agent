@@ -1,6 +1,6 @@
 # Finance Planning chat demos
 
-Load [Finance Planning](../agents/finance-planning.md). Paste these fictional inputs and Walker's messages.
+Load [Finance Planning](../walker-finance/references/finance-planning.md). Paste these fictional inputs and Walker's messages.
 
 ~~~text
 Review date: 2026-11-15, America/Los_Angeles. Mode: manual.

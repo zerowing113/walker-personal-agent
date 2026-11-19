@@ -1,6 +1,6 @@
 # Rewards and Travel chat demos
 
-Load [Rewards and Travel](../agents/rewards-and-travel.md). Use only these fictional offers and quotes.
+Load [Rewards and Travel](../walker-finance/references/rewards-and-travel.md). Use only these fictional offers and quotes.
 
 ~~~text
 Demo now: 2026-11-15 19:00 America/Los_Angeles.

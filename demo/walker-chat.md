@@ -1,6 +1,6 @@
 # Full chat demo · Planning an Australia trip
 
-All inputs and quotes are fictional. Load the [Orchestrator](../agents/orchestrator.md), the four module instructions, and the [ledger rules](../shared/transaction-ledger.md). To replay, paste the input blocks from [Spending](spending.md), [Cash Flow](cash-flow.md), [Rewards and Travel](rewards-and-travel.md), and [Finance Planning](finance-planning.md) into the same chat. Use the original $3,600 reported closing balance. Then send the Walker messages in order.
+All inputs and quotes are fictional. Load the [skill router](../walker-finance/SKILL.md), the four module instructions, and the [ledger rules](../walker-finance/references/ledger-rules.md). To replay, paste the input blocks from [Spending](spending.md), [Cash Flow](cash-flow.md), [Rewards and Travel](rewards-and-travel.md), and [Finance Planning](finance-planning.md) into the same chat. Use the original $3,600 reported closing balance. Then send the Walker messages in order.
 
 ## 1. Check spending
 
