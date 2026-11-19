@@ -27,9 +27,6 @@ Use [Your feedback](https://zerowing113.github.io/walker-personal-agent/#feedbac
 
 ## Architecture
 
-<details>
-<summary>How the proposed modules work together</summary>
-
 The orchestrator receives a question, calls the relevant modules, and returns one reply. For “Can I afford this flight?”, Rewards & Travel finds the fare and Finance Planning compares it with the money Walker set aside.
 
 ~~~mermaid
@@ -42,5 +39,3 @@ flowchart TD
 ~~~
 
 [Module notes](agents/) · [Scenario notes](demo/) · [Shared ledger proposal](shared/transaction-ledger.md)
-
-</details>
