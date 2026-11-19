@@ -10,6 +10,8 @@
 
 [The problem](#1-the-problem) · [The solution](#2-the-solution) · [How it works](#3-how-an-agent-works) · [The three setup files](#4-the-three-setup-files)
 
+**🚀 Want your AI to set it up with you?** Copy the one prompt in [**START-HERE.md**](START-HERE.md) into ChatGPT, Claude, or Muse.
+
 </div>
 
 ---
