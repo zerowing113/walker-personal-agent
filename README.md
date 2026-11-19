@@ -8,17 +8,16 @@ Today those decisions can involve checking several places for card activity, sta
 
 ## Architecture
 
-Walker sends a message from the chat. A backend orchestrator asks a language model (LLM) to interpret it and select a module. The backend validates and runs the module’s tool calls. The tools read the relevant data and use code for calculations such as deduplication, totals, and balance checks. The LLM turns the results into a reply, and the chat displays it.
+The orchestrator receives a question, calls the relevant modules, and returns one reply. For “Can I afford this flight?”, Rewards & Travel finds the fare and Finance Planning compares it with the money Walker set aside.
 
 ~~~mermaid
 flowchart TD
-    F["Front end · chat"] <-->|Question and reply| O["Backend · orchestrator"]
-    O <-->|Intent and wording| L["LLM"]
-    O <-->|Tool calls and results| T["Spending · Cash Flow · Rewards and Travel · Finance Planning"]
-    T <-->|Read and calculate| D["Ledger · statements · offers · fare quotes · planning settings"]
+    W["Walker's question"] --> O["Orchestrator"]
+    O --> S["Spending"]
+    O --> C["Cash Flow"]
+    O --> R["Rewards and Travel"]
+    O --> P["Finance Planning"]
 ~~~
-
-The [interactive prototype](https://zerowing113.github.io/walker-personal-agent/) simulates this flow with fictional data. Open **Sample requests and results** beside a reply to see what the planned backend would pass between components.
 
 [Module notes](agents/) · [Scenario notes](demo/) · [Shared ledger proposal](shared/transaction-ledger.md)
 
