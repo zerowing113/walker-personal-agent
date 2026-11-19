@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Walker · Agent prototype</title>
+<style>
+:root{color-scheme:light;--paper:#f6f5ef;--white:#fffefa;--ink:#172b25;--muted:#53675d;--line:#dce3d8;--deep:#14372d;--lime:#dcf4aa;--wash:#eef4e8;--accent:#28634e}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,sans-serif}button{font:inherit;cursor:pointer}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #9a5b1e;outline-offset:3px}button:disabled{cursor:default;opacity:.5}.shell{width:min(1130px,calc(100% - 36px));margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0;color:var(--deep);font-weight:700}.top small{color:var(--muted);font-weight:600}.hero{background:var(--deep);color:white;border-radius:22px;padding:clamp(23px,5vw,48px);display:flex;justify-content:space-between;align-items:end;gap:28px}.hero h1{font:500 clamp(37px,6vw,72px)/.99 Georgia,serif;letter-spacing:-.055em;margin:0 0 14px}.hero p{margin:0;color:#dceade;max-width:47ch}.hero .tag{white-space:nowrap;background:var(--lime);color:var(--deep);border-radius:100px;padding:8px 13px;font-weight:700}.workspace{display:grid;grid-template-columns:225px minmax(0,1fr) 252px;gap:16px;margin:20px 0 32px;align-items:start}.panel{border:1px solid var(--line);border-radius:17px;background:var(--white);overflow:hidden}.nav,.trace{padding:16px}.eyebrow{font-weight:750;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}.nav button{display:block;width:100%;text-align:left;margin:3px 0;padding:10px;border:1px solid transparent;background:transparent;border-radius:9px;color:var(--ink);font-weight:650}.nav button[aria-pressed=true]{background:var(--wash);border-color:#cfdfc7;color:var(--deep)}.nav button:hover:not([aria-pressed=true]){background:#f4f5ee}.nav span{display:block;color:var(--muted);font-size:12px;font-weight:400}.chat-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:start}.chat-head h2{font-size:19px;margin:0}.chat-head p{font-size:12px;color:var(--muted);margin:2px 0 0}.counter{font-size:12px;color:var(--muted);white-space:nowrap}.chat{min-height:213px;padding:18px 20px}.line{margin:0 0 15px;display:grid;gap:4px}.line:last-child{margin-bottom:0}.who{font-size:12px;font-weight:700;color:var(--muted)}.bubble{width:fit-content;max-width:93%;margin:0;padding:10px 13px;border-radius:12px;background:var(--wash);white-space:pre-line;overflow-wrap:anywhere}.from-walker{justify-items:end}.from-walker .bubble{background:var(--deep);color:white}.controls{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:13px 20px;border-top:1px solid var(--line)}.primary,.secondary,.variant{border-radius:9px;padding:8px 12px;font-weight:700}.primary{background:var(--deep);border:1px solid var(--deep);color:white}.secondary,.variant{background:var(--white);border:1px solid #bed0c0;color:var(--deep)}.variant{margin:0 0 9px;text-align:left;font-size:13px}.variant[aria-pressed=true]{background:var(--lime)}.trace h3{font-size:15px;margin:0 0 7px}.trace p:not(.eyebrow){font-size:13px;margin:0 0 14px;color:var(--muted)}.route{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 13px}.route span{background:var(--wash);color:var(--accent);padding:3px 7px;border-radius:5px;font-size:11px;font-weight:750}.trace details{border-top:1px solid var(--line);padding-top:10px;margin-top:7px;font-size:13px}.trace summary{cursor:pointer;font-weight:700}.trace details p{margin-top:8px!important}.foot{color:var(--muted);font-size:13px;margin:0 0 32px}.foot a{color:var(--accent)}[hidden]{display:none!important}
+@media(max-width:920px){.workspace{grid-template-columns:185px minmax(0,1fr)}.trace{grid-column:2}}@media(max-width:620px){.workspace{grid-template-columns:1fr}.trace{grid-column:auto}.hero{align-items:start;flex-direction:column;gap:18px}.nav{display:grid;grid-template-columns:1fr 1fr;gap:3px}.nav .eyebrow{grid-column:1/-1;margin-bottom:3px}.nav button{margin:0}.top{font-size:14px}.chat-head,.chat,.controls{padding-left:14px;padding-right:14px}.bubble{max-width:100%}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top"><span>Walker / Personal finance agent</span><small>Concept review</small></header>
+<section class="hero"><div><h1>One chat for<br>money and travel.</h1><p>Try a conversation. See which module responds, what it reads, and what Walker still decides.</p></div><span class="tag">Fictional data</span></section>
+<main class="workspace">
+<nav class="panel nav" aria-label="Demo scenarios"><p class="eyebrow">Scenarios</p><div id="scenarios" style="display:contents"></div></nav>
+<section class="panel" aria-labelledby="case-title">
+<header class="chat-head"><div><h2 id="case-title"></h2><p id="case-description"></p></div><span class="counter" id="counter"></span></header>
+<div class="chat" id="chat" role="log" aria-label="Demo conversation" aria-live="polite"></div>
+<div class="controls"><button class="secondary" id="reset" type="button">Restart</button><button class="primary" id="next" type="button">Next message</button></div>
+</section>
+<aside class="panel trace" aria-labelledby="trace-title"><p class="eyebrow" id="trace-title">Behind the reply</p><div class="route" id="route"></div><h3 id="trace-heading">Ready to run</h3><p id="trace-text">Send the first message to see how the orchestrator handles it.</p>
+<div id="variants"></div><details id="check"><summary>What should happen</summary><p id="expected"></p></details></aside>
+</main>
+<p class="foot">This is a scripted prototype for discussion. Replies use sample data and no accounts are connected. <a href="https://github.com/zerowing113/walker-personal-agent#architecture">Architecture on GitHub</a></p>
+</div>
+<script>
+'use strict';
+const dollars = amount => '$' + amount.toLocaleString('en-US');
+const turn = (prompt, route, title, inputs, check, answer) => ({prompt, route, title, inputs, check, answer});
+const spending = turn('What did I spend yesterday?', ['Spending'], 'Remove the duplicate alert',
+  'The sample inbox contains a $350 Chase hotel charge twice and one $250 Amex airline charge. The daily threshold is $500.',
+  'Count the Chase charge once. If Amex is unavailable, show $350 and flag the incomplete coverage.',
+  ({missing}) => {
+    const rows = [{id:'c1',amount:350},{id:'c1',amount:350},...(!missing?[{id:'a1',amount:250}]:[])];
+    const purchases = [...new Map(rows.map(row=>[row.id,row])).values()];
+    const total = purchases.reduce((sum,row)=>sum+row.amount,0);
+    return dollars(total)+' observed on November 14 across '+(missing?'Chase only':'Chase and Amex')+'. '+purchases.length+' pending '+(purchases.length===1?'purchase.':'purchases.')+'\n'+(missing?'Amex is unavailable, so the combined total is unknown.':dollars(total-500)+' above your $500 daily threshold.');
+  });
+const close = turn('How did October end? Do I have room for another travel expense?', ['Cash Flow','Finance Planning'], 'Reconcile the statement and check the reserve',
+  'Opening balance $2,000. Inflows $4,200. Outflows $2,600, including a $900 card payment. Separate travel reserve $650.',
+  'The computed close is $3,600. A $3,575 statement balance leaves a $25 difference and the report stays provisional.',
+  ({mismatch}) => {
+    const change = 4200-2600;
+    const computed = 2000+change;
+    const reported = mismatch?3575:3600;
+    return 'Checking increased '+dollars(change)+' based on the supplied transactions. The computed close is '+dollars(computed)+'. '+(reported===computed?'It matches the statement.':'The statement is '+dollars(computed-reported)+' lower. October stays provisional.')+'\nYou set aside $650 separately for travel.';
+  });
+const fares = turn('Compare Sydney flights in cash and points. Can I use a card offer?', ['Rewards & Travel','Finance Planning'], 'Compare the fare with the travel reserve',
+  'Sample February 4 economy quotes. $620 cash checked at 6:45 p.m. PT, or 45,000 points + $85 checked at 6:50 p.m. PT. The Amex offer could return $50 if eligible and activated.',
+  'With no confirmed credit, compare the full $620 cash quote. The award uses 45,000 points and leaves $565 in the cash reserve.',
+  ({confirmed}) => 'February 4 · Sydney · Economy\nCash: $620'+(confirmed?' with a verified $50 credit, for $570 effective cost after the credit.':' before any credit. Confirm Amex activation and eligibility before counting the possible $50 back.')+'\nPoints: 45,000 Sample Miles + $85. The award leaves '+dollars(650-85)+' of your cash reserve.'+(confirmed?' Allow for the full $620 upfront.':' The cash fare leaves '+dollars(650-620)+'.'));
+const plan = turn('Give me this month’s checklist and include my investment reminder.', ['Finance Planning'], 'Turn the monthly review into next actions',
+  'October dining was $380 against a $300 target. Internet is $65, due November 18. The November investment reminder is due November 15.',
+  'Dining is $80 over target. The November reminder stays due until Walker confirms.',
+  ()=>'Review dining · '+dollars(380-300)+' over your October target.\nInternet · $65 due November 18.\nInvestment · Review your planned contribution on November 15. Status: due.');
+const done = turn('I made the November contribution. What’s still open?', ['Finance Planning'], 'Update this month’s checklist',
+  'Walker confirms the November contribution. He still owns the checklist and saves the proposed update.',
+  'Only November is marked complete in the proposed update. The December 15 reminder stays upcoming.',
+  ()=>'Save November’s reminder as complete. Dining and the internet bill are still open. The December 15 reminder is upcoming.');
+const offer = turn('Which card offer fits the grocery purchase I already planned?', ['Rewards & Travel'], 'Apply the offer cap and expiry',
+  'Activated Chase offer: 10% back, capped at $20. Planned eligible groceries: $150. A separate coffee offer has expired.',
+  'Estimate $15 back. Exclude the expired offer.',
+  ()=>'The activated Chase offer would return '+dollars(Math.min(150*.10,20))+' on your $150 grocery purchase. The expired coffee offer is out of the active list.');
+const bonus = turn('How much more do I need for my welcome bonus?', ['Rewards & Travel'], 'Separate confirmed and pending spend',
+  'The sample Amex bonus requires $3,000 in eligible posted spend by December 10. Confirmed spend is $2,700. Another $180 is pending.',
+  'The remaining confirmed requirement is $300. Do not count pending spend.',
+  ()=>'You need '+dollars(3000-2700)+' more in confirmed eligible spend by December 10. The pending $180 could reduce that once it posts and you verify eligibility.');
+const mixed = turn('What did I spend yesterday, and what offers expire this week?', ['Spending','Rewards & Travel'], 'Merge results from two modules',
+  'The request combines a daily spending summary and an offer lookup. The offer lookup receives only the date window and authorized offer data.',
+  'If the offer feed fails, keep the spending result and report the missing offer data.',
+  ({offerDown})=>'I observed $600 in two pending purchases across Chase and Amex.\n'+(offerDown?'The offer feed was unavailable, so I can’t verify what expires this week.':'The grocery offer expires November 20, and the airline offer expires November 21.'));
+const cases = [
+  {name:'Australia trip', desc:'End-to-end conversation', turns:[spending,close,fares,plan,done]},
+  {name:'Spending', desc:'Daily total and missing coverage', turns:[spending], toggle:['missing','Simulate an Amex outage']},
+  {name:'Cash Flow', desc:'Monthly close and balance mismatch', turns:[close], toggle:['mismatch','Use a mismatched balance']},
+  {name:'Rewards & Travel', desc:'Offers, bonus and Sydney flights', turns:[offer,bonus,fares], toggle:['confirmed','Verify the airline credit']},
+  {name:'Finance Planning', desc:'Monthly checklist and completion', turns:[plan,done]},
+  {name:'Orchestrator', desc:'Two modules, one answer', turns:[mixed], toggle:['offerDown','Simulate an offer feed outage']}
+];
+const byId = id => document.getElementById(id);
+const dom = Object.fromEntries(['scenarios','case-title','case-description','counter','chat','reset','next','route','trace-heading','trace-text','variants','check','expected'].map(id=>[id,byId(id)]));
+let selected = 0;
+let revealed = 0;
+let flags = {};
+function element(tag,text,className) {
+  const item = document.createElement(tag);
+  item.textContent = text;
+  if(className) item.className = className;
+  return item;
+}
+const navButtons = cases.map((scenario,index)=>{
+  const button = element('button',scenario.name);
+  button.type='button';
+  button.append(element('span',scenario.desc));
+  button.addEventListener('click',()=>{
+    selected=index;
+    revealed=0;
+    flags={};
+    render();
+  });
+  dom.scenarios.append(button);
+  return button;
+});
+function addMessage(who,text,fromWalker){
+  const line = element('div','',fromWalker?'line from-walker':'line');
+  line.append(element('span',who,'who'),element('p',text,'bubble'));
+  dom.chat.append(line);
+}
+function render(){
+  const scenario = cases[selected];
+  navButtons.forEach((button,index)=>button.setAttribute('aria-pressed',String(index===selected)));
+  dom['case-title'].textContent=scenario.name;
+  dom['case-description'].textContent=scenario.desc;
+  dom.counter.textContent=revealed+' / '+scenario.turns.length+' turns';
+  dom.chat.replaceChildren();
+  if(!revealed) addMessage('Agent','Ready when you are. Send the first message to start.',false);
+  for(const step of scenario.turns.slice(0,revealed)){
+    addMessage('Walker',step.prompt,true);
+    addMessage('Agent',step.answer(flags),false);
+  }
+  const current = scenario.turns[revealed-1];
+  dom.route.replaceChildren(...['Orchestrator',...(current?current.route:[])].map(label=>element('span',label)));
+  dom['trace-heading'].textContent=current?current.title:'Ready to run';
+  dom['trace-text'].textContent=current?current.inputs:'Send the first message to see how the orchestrator handles it.';
+  dom.check.hidden=!current;
+  dom.expected.textContent=current?current.check:'';
+  dom.variants.replaceChildren();
+  if(scenario.toggle){
+    const [key,label]=scenario.toggle;
+    const toggle=element('button',label,'variant');
+    toggle.type='button';
+    toggle.setAttribute('aria-pressed',String(Boolean(flags[key])));
+    toggle.addEventListener('click',()=>{
+      flags[key]=!flags[key];
+      render();
+      dom.variants.firstElementChild.focus();
+    });
+    dom.variants.append(toggle);
+  }
+  dom.reset.disabled=!revealed&&!Object.values(flags).some(Boolean);
+  dom.next.disabled=revealed===scenario.turns.length;
+  dom.next.textContent=dom.next.disabled?'Scenario complete':revealed?'Next message':'Send first message';
+}
+dom.next.addEventListener('click',()=>{revealed++;render();});
+dom.reset.addEventListener('click',()=>{revealed=0;flags={};dom.check.open=false;render();dom.next.focus();});
+render();
+</script>
+</body>
+</html>
