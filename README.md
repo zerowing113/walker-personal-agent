@@ -6,6 +6,22 @@ Today those decisions can involve checking several places for card activity, sta
 
 **[Open the interactive prototype](https://zerowing113.github.io/walker-personal-agent/)**
 
+## Architecture
+
+Walker sends a message from the chat. A backend orchestrator asks a language model (LLM) to interpret it and select a module. The backend validates and runs the module’s tool calls. The tools read the relevant data and use code for calculations such as deduplication, totals, and balance checks. The LLM turns the results into a reply, and the chat displays it.
+
+~~~mermaid
+flowchart TD
+    F["Front end · chat"] <-->|Question and reply| O["Backend · orchestrator"]
+    O <-->|Intent and wording| L["LLM"]
+    O <-->|Tool calls and results| T["Spending · Cash Flow · Rewards and Travel · Finance Planning"]
+    T <-->|Read and calculate| D["Ledger · statements · offers · fare quotes · planning settings"]
+~~~
+
+The [interactive prototype](https://zerowing113.github.io/walker-personal-agent/) simulates this flow with fictional data. Open **Sample requests and results** beside a reply to see what the planned backend would pass between components.
+
+[Module notes](agents/) · [Scenario notes](demo/) · [Shared ledger proposal](shared/transaction-ledger.md)
+
 ## Problems and proposed solutions
 
 | When Walker wants to… | The problem | What the assistant would do |
@@ -14,28 +30,3 @@ Today those decisions can involve checking several places for card activity, sta
 | Understand where last month’s money went | Card purchases, card payments, and transfers can make spending and cash movement hard to reconcile. | **Cash Flow** shows money in and out, reports purchases separately, and flags any difference from the statement balance. |
 | Decide how to pay for a trip | Cash fares, points, fees, and card offers are hard to compare on the same basis. | **Rewards & Travel** compares cash and points options, shows fees and when quotes were checked, and flags credits that still need confirmation. |
 | Know what to do next | Monthly figures, upcoming bills, and reminders sit apart from the decisions they inform. | **Finance Planning** turns the monthly review into a checklist with upcoming bills, spending variances, and reminders Walker sets. |
-
-## What to decide before building
-
-Start with **Australia trip** to see the workflows together. Then open the scenarios you’d actually use. Step through the replies and try a **what-if** control where available.
-
-1. **Scope.** Which workflows belong together? What would you add or drop?
-2. **Behavior.** Which reply would you change? Where should the assistant ask, flag uncertainty, or leave the decision to you?
-3. **First build.** Which workflow would you use first, and when?
-
-Use [Your feedback](https://zerowing113.github.io/walker-personal-agent/#feedback) in the demo to copy your answers into a message to Huy. The review will shape what gets built first.
-
-## Architecture
-
-The orchestrator receives a question, calls the relevant modules, and returns one reply. For “Can I afford this flight?”, Rewards & Travel finds the fare and Finance Planning compares it with the money Walker set aside.
-
-~~~mermaid
-flowchart TD
-    W["Walker's question"] --> O["Orchestrator"]
-    O --> S["Spending"]
-    O --> C["Cash Flow"]
-    O --> R["Rewards and Travel"]
-    O --> P["Finance Planning"]
-~~~
-
-[Module notes](agents/) · [Scenario notes](demo/) · [Shared ledger proposal](shared/transaction-ledger.md)
