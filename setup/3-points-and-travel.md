@@ -6,12 +6,14 @@
 
 ## What this does and why
 
+This file adds two **specialist agents** to your orchestrator: Card deals and Travel.
+
 Think of it as a personal version of a deal-alert app like Rocket Points, working from your own cards and your own trips.
 
 | Workflow | Answers | Runs | Data |
 |---|---|---|---|
-| **A · Card offers and bonuses** | "Which offers should I activate? Am I on track for my bonus?" | Weekly, plus when offer emails arrive | Offer emails, a monthly screenshot, web search |
-| **B · Flight deals** | "What's the best way to get to Sydney in February?" | On demand, plus a weekly watch on saved routes | Web search and fare sites |
+| **Card deals** | "Which offers should I activate? Am I on track for my bonus?" | Weekly, plus when offer emails arrive | Offer emails, a monthly screenshot, web search |
+| **Travel** | "What's the best way to get to Sydney in February?" | On demand, plus a weekly watch on saved routes | Web search and fare sites |
 
 > [!NOTE]
 > **Why screenshots?** Chase Offers and Amex Offers sit behind your login, and agents can't sign in. A 2-minute monthly screenshot of each offers page gives the agent the full list. Amex has said it plans to bring Offers search and enrollment into select AI platforms. If that reaches your agent, skip the screenshot.
@@ -37,10 +39,10 @@ Subscribe the **agent inbox** to one flight-deal newsletter you trust, so the ag
 
 ### Step 3 · Paste the two instruction blocks
 
-**A · Card offers and bonuses**
+**Specialist: Card deals**
 
 ```text
-CARD OFFERS AND BONUSES
+CARD DEALS (offers and bonuses)
 Sources: offer emails in the agent inbox, offer-page screenshots Walker drops in, and public web info about card and transfer promotions.
 1. Keep a list of active offers: card, merchant, benefit, cap, minimum spend, expiry, activated (yes / no / unknown).
 2. Rank offers by expected value on Walker's planned_purchases. Show the dollar value, not just the percentage. Leave expired offers out.
@@ -50,10 +52,10 @@ Sources: offer emails in the agent inbox, offer-page screenshots Walker drops in
 Alerts: ping when a high-value offer (worth $20 or more on planned purchases) expires within 5 days and isn't activated, or when a bonus deadline is 14 days away and he's behind pace.
 ```
 
-**B · Flight deals**
+**Specialist: Travel**
 
 ```text
-FLIGHT DEALS
+TRAVEL (flight deals)
 When Walker asks about a trip, or on the weekly watch for watched_routes:
 1. Search public fare sources for the route, dates (± flexibility), cabin and travelers.
 2. Return the top 3 options. For each: airline, dates, stops, total cash price including taxes, or points plus taxes and fees, and which of Walker's points programs could cover it (including transfer partners).

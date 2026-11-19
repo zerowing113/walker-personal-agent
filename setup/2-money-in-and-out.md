@@ -6,11 +6,13 @@
 
 ## What this does and why
 
+This file adds three **specialist agents** to your orchestrator. Each instruction block below is one specialist.
+
 | Workflow | Answers | Runs | Data |
 |---|---|---|---|
-| **A · Daily spending** | "What did I spend today?" | Every few hours, plus whenever you ask | Card alerts in the agent inbox |
-| **B · Cash flow statement** | "Where did last month's money go?" | Monthly, when you drop in statements | Statement exports you download |
-| **C · ETF transfer reminder** | "How much goes into each ETF this month?" | Monthly | Your Settings tab |
+| **Spending** | "What did I spend today?" | Every few hours, plus whenever you ask | Card alerts in the agent inbox |
+| **Cash flow** | "Where did last month's money go?" | Monthly, when you drop in statements | Statement exports you download |
+| **Investing** | "How much goes into each ETF this month?" | Monthly | Your Settings tab |
 
 **Why two data sources?** Card alerts arrive within minutes, but they only cover card purchases. Statements arrive monthly, but they're complete: income, rent, card payments, and the Schwab transfer. The agent uses alerts for *today* and statements for *the month*.
 
@@ -39,10 +41,10 @@ Replace the placeholders with your actual approved ETFs and target weights. Keep
 
 Add them below the foundation instructions.
 
-**A · Daily spending**
+**Specialist: Spending**
 
 ```text
-DAILY SPENDING
+SPENDING
 When Walker asks what he spent, or on a scheduled check:
 1. Read new card-alert emails in the agent inbox since the last Ledger row for each card.
 2. Add one Ledger row per purchase (date, card, merchant, amount, status = pending, source_id = the email's ID). If a source_id already exists, skip it. That's how duplicates are avoided.
@@ -52,10 +54,10 @@ When Walker asks what he spent, or on a scheduled check:
 Alerts: ping once when today's total first goes above daily_spend_alert, and once for any single purchase at or above large_purchase_alert. If a card has had no alerts for 3 days, ping: "No [card] alerts in 3 days. Check that alerts are still on."
 ```
 
-**B · Monthly cash flow statement**
+**Specialist: Cash flow**
 
 ```text
-MONTHLY CASH FLOW STATEMENT
+CASH FLOW (monthly statement)
 When Walker drops in statement exports (CSV or PDF) and asks to close a month:
 1. List which statements you received, and name any expected account that's missing.
 2. Build Walker's personal statement of cash flows for the month:
@@ -69,10 +71,10 @@ When Walker drops in statement exports (CSV or PDF) and asks to close a month:
 Mark the statement PROVISIONAL if a statement is missing or a difference remains.
 ```
 
-**C · ETF transfer reminder**
+**Specialist: Investing**
 
 ```text
-ETF TRANSFER REMINDER
+INVESTING (ETF transfer reminder)
 On investment_day each month, or when Walker asks:
 1. Split monthly_investment_amount across etf_list using etf_target_weights. Show a table: ETF, weight, dollar amount. Round to whole dollars, and make sure the amounts add up to the total.
 2. Remind Walker to place the transfer and orders himself at his brokerage. You cannot and must not do it.
