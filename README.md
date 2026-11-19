@@ -1,8 +1,12 @@
 # Walker's personal finance agent
 
-A proof of concept to review with Walker. One chat brings together spending, cash flow, rewards and travel, and monthly planning. The demo uses fictional data and scripted replies.
+Walker, this is a concept for one chat that brings together spending, cash flow, rewards and travel, and monthly planning. Use the prototype to decide which workflows belong together, how the replies should behave, and which workflow would be worth building first. The conversations use scripted replies and fictional data.
 
-**[Open the interactive prototype](https://zerowing113.github.io/walker-personal-agent/)**
+**[Review the interactive prototype](https://zerowing113.github.io/walker-personal-agent/)**
+
+1. Start with **Australia trip** to see the modules work together.
+2. Open the scenarios you’d actually use. Step through each reply and try a **what-if** control where available.
+3. Use **Your feedback** in the demo to note what belongs in one chat, how you’d change a reply, and what you’d build first. Copy your notes and send them back to Huy.
 
 ## Architecture
 

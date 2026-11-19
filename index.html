@@ -8,12 +8,19 @@
 :root{color-scheme:light;--paper:#f6f5ef;--white:#fffefa;--ink:#172b25;--muted:#53675d;--line:#dce3d8;--deep:#14372d;--lime:#dcf4aa;--wash:#eef4e8;--accent:#28634e}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 "Segoe UI",system-ui,sans-serif}button{font:inherit;cursor:pointer}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #9a5b1e;outline-offset:3px}button:disabled{cursor:default;opacity:.5}.shell{width:min(1130px,calc(100% - 36px));margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:20px 0;color:var(--deep);font-weight:700}.top small{color:var(--muted);font-weight:600}.hero{background:var(--deep);color:white;border-radius:22px;padding:clamp(23px,5vw,48px);display:flex;justify-content:space-between;align-items:end;gap:28px}.hero h1{font:500 clamp(37px,6vw,72px)/.99 Georgia,serif;letter-spacing:-.055em;margin:0 0 14px}.hero p{margin:0;color:#dceade;max-width:47ch}.hero .tag{white-space:nowrap;background:var(--lime);color:var(--deep);border-radius:100px;padding:8px 13px;font-weight:700}.workspace{display:grid;grid-template-columns:225px minmax(0,1fr) 252px;gap:16px;margin:20px 0 32px;align-items:start}.panel{border:1px solid var(--line);border-radius:17px;background:var(--white);overflow:hidden}.nav,.trace{padding:16px}.eyebrow{font-weight:750;font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}.nav button{display:block;width:100%;text-align:left;margin:3px 0;padding:10px;border:1px solid transparent;background:transparent;border-radius:9px;color:var(--ink);font-weight:650}.nav button[aria-pressed=true]{background:var(--wash);border-color:#cfdfc7;color:var(--deep)}.nav button:hover:not([aria-pressed=true]){background:#f4f5ee}.nav span{display:block;color:var(--muted);font-size:12px;font-weight:400}.chat-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;align-items:start}.chat-head h2{font-size:19px;margin:0}.chat-head p{font-size:12px;color:var(--muted);margin:2px 0 0}.counter{font-size:12px;color:var(--muted);white-space:nowrap}.chat{min-height:213px;padding:18px 20px}.line{margin:0 0 15px;display:grid;gap:4px}.line:last-child{margin-bottom:0}.who{font-size:12px;font-weight:700;color:var(--muted)}.bubble{width:fit-content;max-width:93%;margin:0;padding:10px 13px;border-radius:12px;background:var(--wash);white-space:pre-line;overflow-wrap:anywhere}.from-walker{justify-items:end}.from-walker .bubble{background:var(--deep);color:white}.controls{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;padding:13px 20px;border-top:1px solid var(--line)}.primary,.secondary,.variant{border-radius:9px;padding:8px 12px;font-weight:700}.primary{background:var(--deep);border:1px solid var(--deep);color:white}.secondary,.variant{background:var(--white);border:1px solid #bed0c0;color:var(--deep)}.variant{margin:0 0 9px;text-align:left;font-size:13px}.variant[aria-pressed=true]{background:var(--lime)}.trace h3{font-size:15px;margin:0 0 7px}.trace p:not(.eyebrow){font-size:13px;margin:0 0 14px;color:var(--muted)}.route{display:flex;flex-wrap:wrap;gap:5px;margin:0 0 13px}.route span{background:var(--wash);color:var(--accent);padding:3px 7px;border-radius:5px;font-size:11px;font-weight:750}.trace details{border-top:1px solid var(--line);padding-top:10px;margin-top:7px;font-size:13px}.trace summary{cursor:pointer;font-weight:700}.trace details p{margin-top:8px!important}.foot{color:var(--muted);font-size:13px;margin:0 0 32px}.foot a{color:var(--accent)}[hidden]{display:none!important}
 @media(max-width:920px){.workspace{grid-template-columns:185px minmax(0,1fr)}.trace{grid-column:2}}@media(max-width:620px){.workspace{grid-template-columns:1fr}.trace{grid-column:auto}.hero{align-items:start;flex-direction:column;gap:18px}.nav{display:grid;grid-template-columns:1fr 1fr;gap:3px}.nav .eyebrow{grid-column:1/-1;margin-bottom:3px}.nav button{margin:0}.top{font-size:14px}.chat-head,.chat,.controls{padding-left:14px;padding-right:14px}.bubble{max-width:100%}}
+
+.review-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.review-steps div{border:1px solid var(--line);background:var(--white);border-radius:12px;padding:12px 15px}.review-steps span{display:block;font-size:13px;color:var(--muted);margin-top:3px}.review-steps a{color:var(--accent)}.review{padding:clamp(18px,4vw,32px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:24px;margin-bottom:20px;scroll-margin-top:12px}.review h2{font:500 33px/1.12 Georgia,serif;margin:0 0 10px}.review p:not(.eyebrow){margin:0;color:var(--muted);max-width:36ch}.review label{display:block;font-weight:700;margin-bottom:5px}.review textarea,.review select{display:block;width:100%;background:var(--white);border:1px solid #b4c5b6;border-radius:8px;color:var(--ink);font:inherit;padding:8px 10px;margin:0 0 13px}.review textarea{resize:vertical}.review textarea:focus-visible,.review select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}.review #copy-status{color:var(--muted);display:block;margin-top:7px;min-height:1.5em;font-size:13px}@media(max-width:620px){.review-steps,.review{grid-template-columns:1fr}.review{gap:14px}}
 </style>
 </head>
 <body>
 <div class="shell">
 <header class="top"><span>Walker / Personal finance agent</span><small>Concept review</small></header>
 <section class="hero"><div><h1>One chat for<br>money and travel.</h1><p>Try a conversation. See which module responds, what it reads, and what Walker still decides.</p></div><span class="tag">Fictional data</span></section>
+<section class="review-steps" aria-label="How to review">
+  <div><strong>1. See the full flow</strong><span>Start with Australia trip and advance through the conversation.</span></div>
+  <div><strong>2. Try what you'd use</strong><span>Pick a scenario. The side panel shows what the agent reads and what changes in a what-if run.</span></div>
+  <div><strong>3. Share your take</strong><span><a href="#feedback">Record your feedback</a> on the scope, replies, and what to build first.</span></div>
+</section>
 <main class="workspace">
 <nav class="panel nav" aria-label="Demo scenarios"><p class="eyebrow">Scenarios</p><div id="scenarios" style="display:contents"></div></nav>
 <section class="panel" aria-labelledby="case-title">
@@ -24,6 +31,30 @@
 <aside class="panel trace" aria-labelledby="trace-title"><p class="eyebrow" id="trace-title">Behind the reply</p><div class="route" id="route"></div><h3 id="trace-heading">Ready to run</h3><p id="trace-text">Send the first message to see how the orchestrator handles it.</p>
 <div id="variants"></div><details id="check"><summary>What should happen</summary><p id="expected"></p></details></aside>
 </main>
+<section class="panel review" id="feedback" aria-labelledby="feedback-title">
+  <div>
+    <p class="eyebrow">Review the concept</p>
+    <h2 id="feedback-title">Your feedback</h2>
+    <p>A sentence per question is enough. Copy your notes when you're ready to send them back to Huy. Your answers stay on this page until you share them.</p>
+  </div>
+  <form id="review-form">
+    <label for="feedback-scope">What belongs together in one chat?</label>
+    <textarea id="feedback-scope" rows="2" placeholder="What would you keep, remove, or add?"></textarea>
+    <label for="feedback-behavior">Which reply would you change?</label>
+    <textarea id="feedback-behavior" rows="2" placeholder="What should it say, clarify, or leave for you to decide?"></textarea>
+    <label for="feedback-priority">What would you build first?</label>
+    <select id="feedback-priority">
+      <option value="">Choose a workflow</option>
+      <option>Spending</option><option>Cash Flow</option><option>Rewards &amp; Travel</option><option>Finance Planning</option><option>Something else</option><option>None yet</option>
+    </select>
+    <label for="feedback-why">Why would you start there?</label>
+    <textarea id="feedback-why" rows="2" placeholder="When would you use it?"></textarea>
+    <button class="primary" type="button" id="copy-feedback">Copy feedback</button>
+    <span id="copy-status" role="status"></span>
+    <label for="copy-fallback" id="fallback-label" hidden>Feedback to copy</label>
+    <textarea id="copy-fallback" rows="6" readonly hidden></textarea>
+  </form>
+</section>
 <p class="foot">This is a scripted prototype for discussion. Replies use sample data and no accounts are connected. <a href="https://github.com/zerowing113/walker-personal-agent#architecture">Architecture on GitHub</a></p>
 </div>
 <script>
@@ -147,6 +178,36 @@ function render(){
 dom.next.addEventListener('click',()=>{revealed++;render();});
 dom.reset.addEventListener('click',()=>{revealed=0;flags={};dom.check.open=false;render();dom.next.focus();});
 render();
+const prompts = [
+  ['Scope', 'feedback-scope'],
+  ['Reply to change', 'feedback-behavior'],
+  ['First workflow', 'feedback-priority'],
+  ['Why', 'feedback-why']
+];
+byId('copy-feedback').addEventListener('click', async () => {
+  const answers = prompts.map(([label,id])=>[label,byId(id).value.trim()]).filter(([,value])=>value);
+  const status = byId('copy-status');
+  const fallback = byId('copy-fallback');
+  fallback.hidden = true;
+  byId('fallback-label').hidden = true;
+  if (!answers.length) {
+    status.textContent = 'Add at least one answer before copying.';
+    byId('feedback-scope').focus();
+    return;
+  }
+  const notes = ['Walker agent concept feedback', ...answers.map(([label,value])=>label+': '+value)].join('\n\n');
+  try {
+    await navigator.clipboard.writeText(notes);
+    status.textContent = 'Copied. Paste your notes into a message to Huy.';
+  } catch {
+    fallback.value = notes;
+    fallback.hidden = false;
+    byId('fallback-label').hidden = false;
+    fallback.focus();
+    fallback.select();
+    status.textContent = 'Your feedback is selected below. Copy it to share with Huy.';
+  }
+});
 </script>
 </body>
 </html>
