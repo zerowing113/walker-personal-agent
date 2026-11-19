@@ -1,6 +1,6 @@
 # Spending chat demos
 
-Load [Spending](../agents/spending.md) and the [ledger rules](../shared/transaction-ledger.md). Paste only the inputs and Walker's messages. All data are fictional.
+Load [Spending](../walker-finance/references/spending.md) and the [ledger rules](../walker-finance/references/ledger-rules.md). Paste only the inputs and Walker's messages. All data are fictional.
 
 ~~~text
 Demo run: 2026-11-15 19:00 America/Los_Angeles. Threshold: USD 500.

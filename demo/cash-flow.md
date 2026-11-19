@@ -1,6 +1,6 @@
 # Cash Flow chat demos
 
-Load [Cash Flow](../agents/cash-flow.md) and the [ledger rules](../shared/transaction-ledger.md). All data are fictional. Paste the input block and Walker's messages.
+Load [Cash Flow](../walker-finance/references/cash-flow.md) and the [ledger rules](../walker-finance/references/ledger-rules.md). All data are fictional. Paste the input block and Walker's messages.
 
 ~~~text
 Period: October 2026. Currency: USD. Cash scope: Checking only.

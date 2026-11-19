@@ -1,6 +1,6 @@
 # Orchestrator chat demos
 
-Load the [Orchestrator](../agents/orchestrator.md), Spending, Rewards and Travel, and the ledger rules. Paste the first input block from [Spending](spending.md) and the fictional offer and date block from [Rewards and Travel](rewards-and-travel.md).
+Load the [skill router](../walker-finance/SKILL.md), Spending, Rewards and Travel, and the ledger rules. Paste the first input block from [Spending](spending.md) and the fictional offer and date block from [Rewards and Travel](rewards-and-travel.md).
 
 **Walker:** What did I spend yesterday, and which offers expire in the next seven days?
 
