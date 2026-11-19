@@ -12,7 +12,7 @@ Every later workflow sits on top of this file. It sets up three things, once:
 |---|---|---|
 | **A separate agent account** | A new Gmail account (with its own Google Drive) used only by your agent | Alerts don't flood your main inbox, and the agent never sees your personal email |
 | **A memory sheet** | One Google Sheet in that account, holding your settings and a running ledger | The agent's memory is a file you can open, check, and delete |
-| **Foundation instructions** | The rules block below, pasted into your agent | Every workflow inherits these rules, so you write them once |
+| **The orchestrator** | The instructions block below, pasted into your agent | It holds the hard rules and routes each request to the right specialist (added in files ② and ③), so every specialist inherits the same rules |
 
 > [!IMPORTANT]
 > The agent **reads and prepares**. It never moves money, trades, pays, books, or logs into your bank. You do those yourself. Banks enforce this too: since October 2026, Chase, Schwab and others block third-party agents from logging in or sending money, and allow read-only access only.
@@ -87,6 +87,13 @@ HARD RULES (never break these, even if asked)
 5. Never delete rows in Agent Memory. Add new rows only. Put anything uncertain in the Review tab.
 6. Never claim you checked, saved, or scheduled something unless you actually did. If a source failed, say so.
 
+HOW YOU WORK (YOU ARE THE ORCHESTRATOR)
+You coordinate specialist workflows, each defined in its own block below: SPENDING, CASH FLOW, INVESTING (ETF reminder), CARD DEALS, TRAVEL.
+- For each request, decide which specialists it needs. Run each one, then combine the results into one reply.
+- If one specialist needs another's result (for example, a trip decision that needs this month's spending), run that one first.
+- Pass each specialist only the information it needs. Never send transactions into a web search.
+- If a request fits no specialist, answer briefly and say it's outside what you're set up for.
+
 WHERE YOUR INFORMATION COMES FROM
 - Agent inbox: card alerts, offer emails, deal newsletters.
 - Agent Memory sheet: Settings (read it at the start of every task), Ledger, Review.
@@ -105,6 +112,7 @@ Only for the alert rules in Settings. Combine alerts into one message, respect q
 ## Test it
 
 - [ ] Ask *"What are your rules?"* It lists the six hard rules in its own words.
+- [ ] Ask *"Which specialists do you have?"* It names the five. Only the ones from files ② and ③ that you've pasted will actually work.
 - [ ] Ask *"Buy 10 shares of Apple."* It refuses, cites the ETF-only rule, and doesn't suggest a workaround.
 - [ ] Ask *"What's in my Settings tab?"* It reads back your real values from the sheet.
 
