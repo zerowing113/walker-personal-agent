@@ -6,22 +6,25 @@ Build one agent that answers spending questions, reconciles monthly cash flow, c
 
 ## Architecture
 
+Walker uses one chat. The orchestrator chooses the modules for each request and combines their results into one reply. A configured schedule can also start a run.
+
 ~~~mermaid
 flowchart TD
-    W["Walker or a configured schedule"] --> O["Orchestrator"]
+    W["Walker or a scheduled run"] --> O["Orchestrator"]
     O --> S["Spending"]
     O --> C["Cash Flow"]
-    O --> R["Rewards and Travel"]
+    O --> R["Rewards &amp; Travel"]
     O --> P["Finance Planning"]
-    I["Dedicated inbox or redacted exports"] --> L["Private transaction ledger"]
-    L --> S
-    L --> C
-    C --> P
-    R --> P
-    T["Offer terms and fare quotes"] --> R
 ~~~
 
-Finance Planning receives a cash-flow summary or trip comparison when the request needs it. Rewards and Travel uses card aliases, offer terms, and trip details.
+| Module and setup instructions | Reads | Returns | Chat demo |
+|---|---|---|---|
+| [Spending](agents/spending.md) | Purchase alerts and posted records from the [private ledger](shared/transaction-ledger.md) | Observed spending, pending purchases, and threshold flags | [Daily digest](demo/spending.md) |
+| [Cash Flow](agents/cash-flow.md) | Posted transactions and balances from the private ledger | Monthly inflows, outflows, and balance reconciliation | [Monthly close](demo/cash-flow.md) |
+| [Rewards & Travel](agents/rewards-and-travel.md) | Card offer terms, trip preferences, and fare quotes | Offer deadlines and flight options in cash or points | [Offers and flights](demo/rewards-and-travel.md) |
+| [Finance Planning](agents/finance-planning.md) | Walker's goals and bills, plus cash-flow or trip summaries when needed | A monthly checklist and reminders | [Monthly review](demo/finance-planning.md) |
+
+**Example.** Walker asks, “Can I afford this flight?” Rewards & Travel finds the fare, Finance Planning compares it with the money Walker set aside, and the orchestrator replies with both the price and the remaining travel budget. [See the full trip walkthrough.](demo/walker-chat.md)
 
 ## Quick start
 
@@ -31,13 +34,7 @@ Finance Planning receives a cash-flow summary or trip comparison when the reques
 4. Add the other three instruction blocks. Replay their demos one at a time, then replay the [full conversation](demo/walker-chat.md). Share only the input blocks and Walker's messages with the agent during an eval. Keep the expected replies for comparison.
 5. For everyday use, keep the ledger in a Walker-owned private spreadsheet or equivalent exportable store. Apply reviewed rows and checklist changes there if the platform cannot persist them reliably.
 
-| Instructions | Standalone chat demos |
-|---|---|
-| [Orchestrator](agents/orchestrator.md) | [Routing and partial results](demo/orchestrator.md) |
-| [Spending](agents/spending.md) | [Digest, threshold, and missing feed](demo/spending.md) |
-| [Cash Flow](agents/cash-flow.md) | [Monthly close and balance exception](demo/cash-flow.md) |
-| [Rewards and Travel](agents/rewards-and-travel.md) | [Offers, welcome bonus, and international flights](demo/rewards-and-travel.md) |
-| [Finance Planning](agents/finance-planning.md) | [Monthly review and reminder completion](demo/finance-planning.md) |
+[Replay the orchestrator demo](demo/orchestrator.md) to test how it handles a request that needs two modules.
 
 ## From demo to personal use
 
